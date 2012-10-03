@@ -19,9 +19,9 @@ $(function() { // ENCAPSULATE EVERYTHING IN JQUERY, EVEN FUNCTIONS
 
 // DEFINE GLOBALS
 	var	pages = $('#page-wrapper>div'),
-		page_tab = 'https://home.codyhalovich.com/nbc/www/home.php',
-		channel = '//home.codyhalovich.com/nbc/www/channel.html',
-		app_id = '368337929912122',
+		page_tab = 'https://apps3.ionflo.com/nbc/www/home.php',
+		channel = '//apps3.ionflo.com/nbc/www/channel.html',
+		app_id = '183664281769605',
 		user_email = '';
 
 //INITIALIZE FACEBOOK
