@@ -16,8 +16,11 @@ class Db {
 
 	}
 
-	public function select($collection,$crit = array()) {
+	public function select($collection,$crit = array(),$options = array()) {
 		$record = $this->db->$collection->find($crit);
+		foreach($options as $key => $value) $$key = $value;
+			if(isset($limit)) $record->limit($limit);
+			if(isset($sort)) $record->sort($sort);
 		return $record;
 	}
 
@@ -28,10 +31,13 @@ class Db {
 
 	public function insert($collection,$data) {
 		$this->db->$collection->insert($data);
+		$this->last_id = $data['_id'];
+		return $data;
 	}
 
 	public function update($collection,$crit,$data) {
 		$this->db->$collection->update($crit,$data);
+		return $data;
 	}
 
 	public function remove($collection,Array $crit) {

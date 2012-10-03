@@ -57,6 +57,13 @@ if(isset($data['email']))
 	<h1><?=$site['name'];?></h1>
 	<span>Admin Panel</span>
 
+	<nav>
+		<ul>
+			<li><a href="<?=$_SERVER['PHP_SELF']?>?p=users">Users</a> </li> 
+			<li><a href="<?=$_SERVER['PHP_SELF']?>?p=campaigns">Campaigns</a> </li> 
+		</ul> 
+	</nav> 
+
 	<br class="clear" />
 	
 </header>
@@ -74,9 +81,11 @@ echo '<section id="main">';
 (!isset($_GET['p']))? $p = 'users' : $p = $_GET['p'];
 switch($p) {
 	case 'users':
-
 		require_once('users.php');
+	break;
 
+	case 'campaigns':
+		require_once('campaigns.php');
 	break;
 
 	default:

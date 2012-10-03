@@ -40,15 +40,16 @@ $date = date('U');
 	<title></title>
 	<meta charset="utf-8" />
 
-	<link rel="stylesheet" type="text/css" href="css/style.css?date=<?php $date; ?>" />
+	<link rel="stylesheet" type="text/css" href="css/style.css?date=<?=$date;?>" />
 	<link rel="stylesheet" type="text/css" href="css/fonts.css" />
 	<link rel="stylesheet" type="text/css" href="css/jquery.fancybox.css" />
+	<script type="text/javascript" src="js/html5shiv.js"></script> 
 	<script type="text/javascript" src="js/jquery.js"></script>
 	<script type="text/javascript" src="js/jquery-ui.js"></script>
 	<script type="text/javascript" src="js/jquery-form.js"></script>
 	<script type="text/javascript" src="js/jquery-validate.js"></script>
 	<script type="text/javascript" src="js/jquery-fancybox.js"></script>
-	<script type="text/javascript" src="js/ottawa.js?date=<?php $date; ?>"></script>
+	<script type="text/javascript" src="js/site.js?date=<?=$date; ?>"></script>
 
 </head>
 
@@ -58,11 +59,7 @@ $date = date('U');
 
 <div id="page-wrapper">
 
-<?php if($liked == 1) {
-	require_once('pages.php'); 
-} else { ?>
-	<div id="like-gate"></div> 
-<?php } ?>
+	<? require_once('pages.php'); ?>
 
 </div>
 

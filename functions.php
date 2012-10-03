@@ -60,5 +60,13 @@ function check_bans() {
 
 }
 
+function pretty_array($array) {
+
+	echo "<pre>";
+	print_r($array);
+	echo "</pre>";
+
+}
+
 
 ?>

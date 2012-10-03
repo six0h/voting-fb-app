@@ -27,11 +27,11 @@ $(function() {
 		$(this).parent().parent('div').hide();
 	});
 
-	$('.modal input').focus(function() {
+	$('#login_modal input').focus(function() {
 		$(this).val('').css('color','#000');
 	});
 
-	$('.modal input').blur(function() {
+	$('#login_modal input').blur(function() {
 		if($(this).val() == '') {
 			var ele = $(this).attr('id');
 			switch(ele)
