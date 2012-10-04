@@ -121,7 +121,7 @@ echo '</section>';
 <?php
 }
 ?>
-<script src="js/jquery-1.7.2.min.js"></script>
+<script src="js/jquery.js"></script>
 <script src="js/jquery-ui-1.8.18.custom.min.js"></script>
 <script src="js/jquery.form.js"></script>
 <script src="js/jquery.fancybox.pack.js"></script>

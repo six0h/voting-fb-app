@@ -19,6 +19,7 @@ header { display: block; width: 679px; height: 186px; background: url(../img/cop
 #items .entry span { display: block; color: #fff; font-size: 1em; margin: 10px 0 0 0; width: 310px; text-align: center; }
 
 .votebtn { display: block; width: 96px; height: 23px; background: url(../img/votebtn.png) no-repeat; border: 0; text-indent: -9999pt; margin: 10px 0 0 107px; }
+.votebtn:hover { background-position: 0px -23px; } 
 
 #calendar { width: 767px; height: 206px; margin: 0 0 0 21px; background: url(../uploads/bottombar.png) no-repeat; }
 

@@ -20,7 +20,7 @@ if($_POST['vote'] && $_POST['ip']) {
 	$checkVote = $db->count('votes',array('campaign' => $camp['_id'],'ip'=>(string)$_POST['ip']));
 
 	if($checkVote > 0) {
-		$error[] = 'You are not eligible to vote';
+		$error[] = "It looks as if you've already voted!";
 		$status = 502;
 	}
 

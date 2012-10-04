@@ -71,6 +71,14 @@ $(function() {
 		}
 	});
 	/**** END LOGIN AND REGISTER MODALS ****/
+
+	$('.exportLink').click(function() {
+		MyTimestamp = new Date().getTime(); 
+		$.get('csv.php','timestamp='+MyTimestamp,function(){
+			document.location.href='csv.php?timestamp='+MyTimestamp;
+		});
+		return false;
+	});
 });
 	
 function safe(s) {

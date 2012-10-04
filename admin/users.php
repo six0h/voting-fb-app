@@ -131,6 +131,8 @@ if(isset($_POST['addUser']) && $_POST['userEmail'] != '') {
 		$success = '0';
 	}
 
+	$userPass = md5($userPass);
+
 	if(isset($userAdmin)) {
 		$userAdmin = 1;
 	}
@@ -147,7 +149,8 @@ if(isset($_POST['addUser']) && $_POST['userEmail'] != '') {
 				'first_name' => $userFirstName,
 				'last_name' => $userLastName,
 				'email' => $userEmail,
-				'date' => $userDate);
+				'date' => $userDate,
+				'password' => $userPass);
 			if(isset($userAdmin)) $crit['admin'] = $userAdmin;
 			$db->insert('users',$crit);
 		}
@@ -189,7 +192,7 @@ if(isset($_GET['add']) || isset($_POST['tryadd'])) {
 $crit = array('admin' => 1);
 $results = $db->select('users',$crit);
 $count = $db->count('users',$crit);
-echo "<span class='content'>Total Users: ".$count." ( <a href='".$_SERVER['PHP_SELF']."?p=users&add=1&admin=1'>Add User</a> )</span><a id='exportLink' href='#'>Export to CSV</a>";
+echo "<span class='content'>Total Users: ".$count." ( <a href='".$_SERVER['PHP_SELF']."?p=users&add=1&admin=1'>Add User</a> )</span><a class='exportLink' href='#'>Export to CSV</a>";
 echo "<br />";
 ?>
 
@@ -228,7 +231,7 @@ echo "<br />";
 $crit = array('admin' => array('$exists' => false));
 $results = $db->select('users',$crit);
 $count = $db->count('users',$crit);
-echo "<span class='content'>Total Users: ".$count." ( <a href='".$_SERVER['PHP_SELF']."?p=users&add=1'>Add User</a> )</span><a id='exportLink' href='#'>Export to CSV</a>";
+echo "<span class='content'>Total Users: ".$count." ( <a href='".$_SERVER['PHP_SELF']."?p=users&add=1'>Add User</a> )</span><a class='exportLink' href='#'>Export to CSV</a>";
 echo "<br />";
 ?>
 
