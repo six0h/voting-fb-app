@@ -61,6 +61,7 @@ if(isset($data['email']))
 		<ul>
 			<li><a href="<?=$_SERVER['PHP_SELF']?>?p=users">Users</a> </li> 
 			<li><a href="<?=$_SERVER['PHP_SELF']?>?p=campaigns">Campaigns</a> </li> 
+			<li><a href="<?=$_SERVER['PHP_SELF']?>?p=images">Images</a> </li> 
 		</ul> 
 	</nav> 
 
@@ -88,6 +89,10 @@ switch($p) {
 		require_once('campaigns.php');
 	break;
 
+	case 'images':
+		require_once('images.php');
+	break;
+
 	default:
 		require_once('users.php');
 }
@@ -97,7 +102,6 @@ echo '</section>';
 } else {
 	echo "<div class='error'>You must login to view the panel</div>";
 ?>
-	<div class="error"></div>
 	<div id="login_modal" class="modal">
 		<span class="modalarrow"></span>
 		<h3>Login</h3>

@@ -16,19 +16,21 @@ foreach($campaign as $camp);
 
 	<div class="entry">
 		<img src="<?=BASE_URL . 'uploads/' . $item['url'];?>" alt="<?=$item['name'];?>"/>
-		<caption><?=$item['name']?></caption>
+		<br />
+		<span><?=$item['name']?></span>
 		<form method="POST" action="ajax/vote.php">
 			<input type="hidden" name="vote_for" value="<?=$i?>"/>
-			<input type="submit" name="vote" value="Vote"/>
+			<input type="hidden" name="ip" value="<?=$_SERVER['REMOTE_ADDR'];?>"/>
+			<input type="submit" name="vote" value="Vote" class="votebtn"/>
 		</form>
 	</div> 
 	<?php $i++; } ?>
 
+	<aside></aside> 
 
 </section>
 
-
-<aside></aside> 
+<aside id="calendar"></aside>
 
 <footer><a href="#">Northern BC</a></footer> 
 <?php

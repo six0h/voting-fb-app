@@ -36,8 +36,8 @@ class Db {
 	}
 
 	public function update($collection,$crit,$data) {
-		$this->db->$collection->update($crit,$data);
-		return $data;
+		$result = $this->db->$collection->update($crit,$data,array('safe'=>true));
+		return $result;
 	}
 
 	public function remove($collection,Array $crit) {

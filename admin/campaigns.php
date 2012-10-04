@@ -19,17 +19,19 @@ if(isset($_POST['intent']) && $_POST['intent'] == 'Add') {
 	// INSERT CAMPAIGN AND GET NEW ID
 	$newCamp = $db->insert('campaign', $insert);
 
+	// LOOP FOR EACH FILE
 	$name = array();
 	for($i=0;$i <= count($_FILES)+1;$i++) {
 
+		// NEW FILE NAME
 		$newFile = $newCamp['_id'] . '-' . $_FILES['add-item-file']['name'][$i];
+		// MOVE FILE TO UPLOADS DIR
 		$move = move_uploaded_file($_FILES['add-item-file']['tmp_name'][$i], UPLOAD_PATH . $newFile); 
 		if(!$move) echo "Couldn't move file $i";
 
 		// SETUP FILE INFO TO UPDATE CAMPAIGN
 		$name[$i] = array(
 			'name'=>$_POST['add-item-name'][$i],
-			'votes'=>0,
 			'url'=>$newFile);
 
 	}
@@ -81,7 +83,7 @@ if(isset($_POST['intent']) && $_POST['intent'] == 'Edit') {
 	if($_FILES['edit-item-file1']['name'] != '') {
 		$i = 0;
 		$newFile = $_POST['id'] . '-' . $_FILES['edit-item-file1']['name'];
-		$files[] = array('items.0.name' => $_FILES['edit-item-file1']['name'],'items.0.url'=> $newFile);
+		$files[] = array('items.0.url'=> $newFile);
 		$move = move_uploaded_file($_FILES['edit-item-file1']['tmp_name'], UPLOAD_PATH . $_POST['id'] . '-' . $_FILES['edit-item-file1']['name']);
 		if(!$move) echo "Failed Upload 1";
 	}
@@ -89,7 +91,7 @@ if(isset($_POST['intent']) && $_POST['intent'] == 'Edit') {
 	if($_FILES['edit-item-file2']['name'] != '') {
 		$i = 1;
 		$newFile = $_POST['id'] . '-' . $_FILES['edit-item-file2']['name'];
-		$files[] = array('items.1.name' => $_FILES['edit-item-file2']['name'],'items.1.url'=> $newFile);
+		$files[] = array('items.1.url'=> $newFile);
 		$move = move_uploaded_file($_FILES['edit-item-file2']['tmp_name'], UPLOAD_PATH . $_POST['id'] . '-' . $_FILES['edit-item-file2']['name']);
 		if(!$move) echo "Failed Upload 2";
 	}
@@ -97,13 +99,10 @@ if(isset($_POST['intent']) && $_POST['intent'] == 'Edit') {
 	if($_FILES['edit-item-file3']['name'] != '') {
 		$i = 2;
 		$newFile = $_POST['id'] . '-' . $_FILES['edit-item-file3']['name'];
-		$files[] = array('items.2.name' => $_FILES['edit-item-file3']['name'],'items.2.url'=> $newFile);
+		$files[] = array('items.2.url'=> $newFile);
 		$move = move_uploaded_file($_FILES['edit-item-file3']['tmp_name'], UPLOAD_PATH . $_POST['id'] . '-' . $_FILES['edit-item-file3']['name']);
 		if(!$move) echo "Failed Upload 3";
 	}
-
-	// MONGO INSTRUCTIONS FOR FILE UPDATE
-	$fileUpdate = array('$set'=>$files);
 
 	// MONGO INSTRUCTIONS FOR INFO UPDATE
 	$data = array('$set' => array(
@@ -117,15 +116,18 @@ if(isset($_POST['intent']) && $_POST['intent'] == 'Edit') {
 	// UPDATE INFO
 	try {
 		$update = $db->update('campaign',$crit,$data);
-	} catch (MongoException $e) {
-		echo $e->getMessage();
+	} catch (Exception $e) {
+		echo 'Couldnt update info <br />'.$e->getMessage();
 	}
-
+	
 	// UPDATE FILES
-	try {
-		$update = $db->update('campaign',$crit,$fileUpdate);
-	} catch (MongoException $e) {
-		echo $e->getMessage();
+	foreach($files as $file) {
+		$fileUpdate = array('$set'=>$file);
+		try {
+			$update = $db->update('campaign',$crit,$fileUpdate);
+		} catch (Exception $e) {
+			echo 'Couldnt update files <br />'.$e->getMessage();
+		}
 	}
 
 }
@@ -181,24 +183,24 @@ if(isset($_GET['intent']) && $_GET['intent'] == 'edit') {
 			<th>Item 1</th> 
 			<th>Item 2</th> 
 			<th>Item 3</th>
-			<th>Total Votes</th>
 			<th>Edit</th>
 		</tr>
 	</thead> 
 	<tbody>
 		<?php 
 		foreach($campaigns as $cam) { 
-		$total_votes = $cam['items'][0]['votes'] + $cam['items'][1]['votes'] + $cam['items'][2]['votes'];
+			$votes['item1'] = $db->count('votes',array('campaign' => $cam['_id'],'vote' => 0));
+			$votes['item2'] = $db->count('votes',array('campaign' => $cam['_id'],'vote' => 1));
+			$votes['item3'] = $db->count('votes',array('campaign' => $cam['_id'],'vote' => 2));
 		?>
 		<tr>
 			<td><?=$cam['_id'];?></td>
 			<td><?=$cam['name'];?></td> 
 			<td><?=date('m d Y', $cam['start']->sec);?></td> 
 			<td><?=date('m d Y', $cam['end']->sec);?></td> 
-			<td><?=$cam['items'][0]['url']?></td> 
-			<td><?=$cam['items'][1]['url']?></td> 
-			<td><?=$cam['items'][2]['url']?></td> 
-			<td><?=$total_votes;?></td> 
+			<td><?=$votes['item1']?></td> 
+			<td><?=$votes['item2']?></td> 
+			<td><?=$votes['item3']?></td> 
 			<td><a href="<?=$_SERVER['PHP_SELF'];?>?p=campaigns&intent=edit&id=<?=$cam['_id']?>">Edit</a></td> 
 		</tr> 
 		<?php } ?>
