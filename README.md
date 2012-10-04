@@ -21,7 +21,7 @@ Pre-Requisites: MongoDB, Amazon S3 Storage Bucket
 4) Edit Global variables in www/js/site.js to your desired settings
 
 5) Add an administrator to mongo with the following Document Schema:
-	{'first_name':'FIRSTNAMEHERE','last_name':'LASTNAMEHERE','email':'EMAILHERE','admin':1,'password':'PASSHERE')}
+	{'first_name':'FIRSTNAMEHERE','last_name':'LASTNAMEHERE','email':'EMAILHERE','admin':1,'password':'PASSHERE'}
 
 Be sure to place your password in the database as an MD5 HASH of its original self, do not use plain-text, it will not work.
 
