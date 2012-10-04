@@ -1,4 +1,5 @@
 config.php
-assets/
+www/assets/
+www/uploads/
 *.swp
 .fuse*
