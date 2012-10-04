@@ -13,7 +13,11 @@ if(isset($_POST['dropdown']) && !empty($_POST['dropdown'])
 	} else if ($dropdown == 'bottom') {
 		$result = move_uploaded_file($_FILES['file']['tmp_name'], UPLOAD_PATH . 'bottombar.png');
 		if(!$result) $upFail = true;
+	} else if ($dropdown == 'top' ) {
+		$result = move_uploaded_file($_FILES['file']['tmp_name'], UPLOAD_PATH . 'copy.png');
+		if(!$result) $upFail = true;
 	}
+		
 
 	if(isset($upFail)) {
 		echo "Image Upload Failed.";
@@ -28,6 +32,7 @@ if(isset($_POST['dropdown']) && !empty($_POST['dropdown'])
 
 	<label for="dropdown">Which Image Would you like to replace?</label>
 	<select name="dropdown">
+		<option value="top">Top</option>
 		<option value="right">Right Side</option>
 		<option value="bottom">Bottom Bar</option>
 	</select>

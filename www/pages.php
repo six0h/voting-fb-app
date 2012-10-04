@@ -32,7 +32,7 @@ foreach($campaign as $camp);
 
 <aside id="calendar"></aside>
 
-<footer><a href="#">Northern BC</a></footer> 
+<footer><a href="http://www.facebook.com/NorthernBC" target="_blank">Northern BC</a></footer> 
 <?php
 } else {
 	echo "There are currently no vote campaigns running.";

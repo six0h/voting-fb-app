@@ -10,7 +10,7 @@ a:active { outline: none; }
 
 #page-wrapper { position: relative; width: 810px; height: 1201px; overflow: hidden; margin: 0 auto; background: url(../img/bg.jpg) no-repeat; font-family: arial, tahoma, verdana, sans-serif; }
 
-header { display: block; width: 679px; height: 186px; background: url(../img/copy.png) no-repeat; margin: 20px 0 0px 30px; }
+header { display: block; width: 679px; height: 186px; background: url(../uploads/copy.png) no-repeat; margin: 20px 0 0px 30px; }
 
 #items aside { display: block; position: absolute; width: 377px; height: 454px; top: 300px; right: 20px; background: url(../uploads/votecallout.png) no-repeat; }
 
@@ -24,3 +24,4 @@ header { display: block; width: 679px; height: 186px; background: url(../img/cop
 #calendar { width: 767px; height: 206px; margin: 0 0 0 21px; background: url(../uploads/bottombar.png) no-repeat; }
 
 footer { width: 526px; height: 68px; position: absolute; bottom: 20px; right: 20px; background: url(../img/bcbadge.png) no-repeat; text-indent: -9999pt; }
+footer a { display: block; width: 526px; height: 68px; text-indent: -9999pt; }

@@ -53,9 +53,12 @@ function base64_url_decode($input) {
 
 function check_bans() {
 
-        global $db;
+	$m = new Mongo();
+	$db = $m->banlist;
+	$db->authenticate('admin','dubbleyou!');
+
         $crit = array('ip' => $_SERVER['REMOTE_ADDR']);
-        $count = $db->count('ip',$crit);
+        $count = $db->ip->count($crit);
         return($count);
 
 }

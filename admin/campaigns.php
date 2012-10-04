@@ -59,7 +59,7 @@ if(isset($_GET['intent']) && $_GET['intent'] == 'add') {
 		<label for="add-item3-name">Item 3</label> 
 		<input type="text" name="add-item-name[]"/>
 		<input type="file" name="add-item-file[]"/>
-		<input type="submit" value="Add" name="intent">
+		<input type="submit" value="Add" name="intent" class="submit">
 	</form> 
 </div> 
 <?php
